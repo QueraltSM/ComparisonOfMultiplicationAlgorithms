@@ -1,7 +1,7 @@
 package practice.pkg3;
 import java.math.BigInteger;
 
-public class CalculadorEstadisticas {
+public class calculadorEstadisticas {
     public static DatosEstadisticos estadisticasMultiplicacion(Multiplicacion metodo, BigInteger n, BigInteger m) {
         DatosEstadisticos datos = new DatosEstadisticos();
 
