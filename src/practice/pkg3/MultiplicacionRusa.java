@@ -8,9 +8,9 @@ public class MultiplicacionRusa implements Multiplicacion {
     @Override
     public void multiplica(BigInteger n, BigInteger m, DatosEstadisticos datos) {
         datos.setOrden(m);
-        long inicio = System.currentTimeMillis();
+        long inicio = System.nanoTime();
         datos.setResultado(recursivaRusa(n, m));
-        datos.setTiempo((float) ((System.currentTimeMillis() - inicio) / 1000.0));
+        datos.setTiempo((float) ((System.nanoTime() - inicio) / 1000000.));
     }
 
     private BigInteger recursivaRusa(BigInteger n, BigInteger m) {
