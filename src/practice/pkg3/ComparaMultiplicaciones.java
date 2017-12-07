@@ -1,17 +1,21 @@
 package practice.pkg3;
 import java.math.BigInteger;
 
-class ComparaMultiplicaciones {
+class comparaMultiplicaciones {
     public static void main(String[] args) {
-
+        int limite = 2458;
+        String valor = "";
+        for (int i = 0; i < 2458; i++) {
+            valor+="9";
+        }
         BigInteger[] datosM = new BigInteger[6];
 
         datosM[0] = new BigInteger("100");
         datosM[1] = new BigInteger("1000");
-        datosM[2] = new BigInteger("7500");
+        datosM[2] = new BigInteger("8960");
         datosM[3] = new BigInteger("100000");
         datosM[4] = new BigInteger("1000000");
-        datosM[5] = new BigInteger("10000000");
+        datosM[5] = new BigInteger(valor);
 
         BigInteger[] datosN = new BigInteger[6];
 
@@ -25,7 +29,7 @@ class ComparaMultiplicaciones {
         Multiplicacion[] metodos = {new SumasSucesivas(), new MultiplicacionEgipcia(),
                 new MultiplicacionRusa()};
 
-        DatosEstadisticos[][] datosSalida = CalculadorEstadisticas.matrizEstadisticas(metodos,
+        DatosEstadisticos[][] datosSalida = calculadorEstadisticas.matrizEstadisticas(metodos,
                 datosN, datosM);
         
         muestraDatosSalida(obtenerNombreMetodos(metodos), datosSalida);
@@ -54,7 +58,24 @@ class ComparaMultiplicaciones {
         System.out.println("");
 
         for (int i = 0; i < datosSalida[0].length; i++) {
-            System.out.printf("%20d", datosSalida[0][i].getOrden());
+            if(i == 5){
+                String valoraux = "1";
+                for (int lim = 0; lim < 2457; lim++) {
+                    valoraux+="0";
+                }               
+                String valor = "";
+                for (int a = 0; a < 2458; a++) {
+                    valor+="9";
+                }
+                BigInteger aux = new BigInteger(valor);                       
+                String s = aux.divideAndRemainder(new BigInteger(valoraux))[0].toString();
+                int s1 = aux.divideAndRemainder(new BigInteger(valoraux))[1].toString().length();
+                        
+                System.out.printf("%20s", s+"*10^"+s1);
+            } else{
+                System.out.printf("%20d", datosSalida[0][i].getOrden());
+            }
+            
             for (DatosEstadisticos[] aDatosSalida : datosSalida) {
                 if (aDatosSalida[i].getError()) System.out.printf("%20s", "-------");
                 else System.out.printf("%20f", aDatosSalida[i].getTiempo());
@@ -75,11 +96,14 @@ class ComparaMultiplicaciones {
         }
         System.out.println("");
 
-        for (int i = 0; i < datosSalida[0].length; i++) {
+        for (int i = 0; i <3; i++) {
             System.out.printf("%20d", datosSalida[0][i].getOrden());
             for (DatosEstadisticos[] aDatosSalida : datosSalida) {
                 if (aDatosSalida[i].getError()) System.out.printf("%20s", "-------");
-                else System.out.printf("%20d", aDatosSalida[i].getResultado());
+                else{
+
+                    System.out.printf("%20s", aDatosSalida[i].getResultado());
+                }
             }
             System.out.println("");
         }
